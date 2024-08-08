@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: dotNET-FrontEnd-to-BackEnd-with-DAPR-on-Azure-Container-Apps
+metadata:
+    template: azd-init@1.9.5
+services:
+    Store:
+        project: Store
+        host: containerapp
+        language: dotnet
+        docker:
+            path: Dockerfile
+    Store.InventoryApi:
+        project: Store.InventoryApi
+        host: containerapp
+        language: dotnet
+        docker:
+            path: Dockerfile
+    Store.ProductApi:
+        project: Store.ProductApi
+        host: containerapp
+        language: dotnet
+        docker:
+            path: Dockerfile
