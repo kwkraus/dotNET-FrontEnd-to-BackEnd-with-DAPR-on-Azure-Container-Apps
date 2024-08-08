@@ -5,19 +5,19 @@ metadata:
     template: azd-init@1.9.5
 services:
     Store:
-        project: Store
+        project: ./src/Store
         host: containerapp
         language: dotnet
         docker:
             path: Dockerfile
     Store.InventoryApi:
-        project: Store.InventoryApi
+        project: ./src/Store.InventoryApi
         host: containerapp
         language: dotnet
         docker:
             path: Dockerfile
     Store.ProductApi:
-        project: Store.ProductApi
+        project: ./src/Store.ProductApi
         host: containerapp
         language: dotnet
         docker:
