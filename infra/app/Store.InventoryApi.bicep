@@ -60,7 +60,7 @@ resource app 'Microsoft.App/containerApps@2023-05-02-preview' = {
     configuration: {
       dapr: {
         enabled: true
-        appId: name
+        appId: 'inventory'
         appPort: 80
         appProtocol: 'http'
       }
