@@ -27,15 +27,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-    - name: Display working directory
-      run: pwd
-
-    - name: Display working directory contents
-      run: ls
-      
     - name: Checkout to the branch
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Azure Login
       uses: azure/login@v1
@@ -57,9 +50,15 @@ jobs:
     
     steps:
 
-    - name: Checkout to the branch
-      uses: actions/checkout@v2
+    - name: Checkout the repo 
+      uses: actions/checkout@v3
+      
+    - name: Display working directory
+      run: pwd
 
+    - name: Display working directory contents
+      run: ls -la
+      
     - name: Azure Login
       uses: azure/login@v1
       with:
