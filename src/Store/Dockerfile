@@ -6,15 +6,17 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Store.csproj", "Store/"]
-COPY ["Monitoring.csproj", "Monitoring/"]
-RUN dotnet restore "Store/Store.csproj"
+COPY ["Store/Store.csproj", "Store/"]
+#COPY ["Monitoring/Monitoring.csproj", "Monitoring/"]
+RUN dotnet restore "./Store/Store.csproj"
+
+# Build and publish
 COPY . .
 WORKDIR "/src/Store"
-RUN dotnet build "Store.csproj" -c Release -o /app/build
+RUN dotnet build "./Store.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Store.csproj" -c Release -o /app/publish
+RUN dotnet publish "./Store.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

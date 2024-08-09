@@ -58,10 +58,18 @@ resource app 'Microsoft.App/containerApps@2023-05-02-preview' = {
   properties: {
     managedEnvironmentId: containerAppsEnvironment.id
     configuration: {
+      dapr: {
+        enabled: true
+        appId: name
+        appPort: 80
+        appProtocol: 'http'
+      }
+      activeRevisionsMode: 'single'
       ingress: {
         external: true
         targetPort: 80
-        transport: 'auto'
+        transport: 'http'
+        allowInsecure: true
       }
       registries: [
         {
@@ -74,7 +82,7 @@ resource app 'Microsoft.App/containerApps@2023-05-02-preview' = {
       containers: [
         {
           image: fetchLatestImage.outputs.?containers[?0].?image ?? 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
-          name: 'main'
+          name: name
           env: [
             {
               name: 'ASPNETCORE_ENVIRONMENT'

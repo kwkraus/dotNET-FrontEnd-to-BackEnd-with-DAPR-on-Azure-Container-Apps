@@ -58,10 +58,18 @@ resource app 'Microsoft.App/containerApps@2023-05-02-preview' = {
   properties: {
     managedEnvironmentId: containerAppsEnvironment.id
     configuration: {
+      dapr: {
+        enabled: true
+        appId: name
+        appPort: 80
+        appProtocol: 'http'
+      }
+      activeRevisionsMode: 'single'
       ingress: {
-        external: false
+        external: true
         targetPort: 80
-        transport: 'auto'
+        transport: 'http'
+        allowInsecure: true
       }
       registries: [
         {
