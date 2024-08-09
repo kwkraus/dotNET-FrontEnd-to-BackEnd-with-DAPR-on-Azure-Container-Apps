@@ -28,6 +28,9 @@ jobs:
 
     steps:
 
+    - name: Display working directory
+      run: pwd
+        
     - name: Checkout to the branch
       uses: actions/checkout@v2
 
