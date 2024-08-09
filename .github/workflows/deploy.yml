@@ -30,7 +30,10 @@ jobs:
 
     - name: Display working directory
       run: pwd
-        
+
+    - name: Display working directory contents
+      run: ls
+      
     - name: Checkout to the branch
       uses: actions/checkout@v2
 
