@@ -63,16 +63,6 @@ module registry './shared/registry.bicep' = {
   scope: rg
 }
 
-module keyVault './shared/keyvault.bicep' = {
-  name: 'keyvault'
-  params: {
-    location: location
-    tags: tags
-    name: '${abbrs.keyVaultVaults}${resourceToken}'
-  }
-  scope: rg
-}
-
 module appsEnv './shared/apps-env.bicep' = {
   name: 'apps-env'
   params: {
@@ -131,5 +121,3 @@ module storeProductApi './app/Store.ProductApi.bicep' = {
 }
 
 output AZURE_CONTAINER_REGISTRY_ENDPOINT string = registry.outputs.loginServer
-output AZURE_KEY_VAULT_NAME string = keyVault.outputs.name
-output AZURE_KEY_VAULT_ENDPOINT string = keyVault.outputs.endpoint
